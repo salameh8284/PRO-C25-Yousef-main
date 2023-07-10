@@ -67,6 +67,7 @@ function draw() {
 }
 
 function keyPressed() {
+  console.log(keyCode); //to find the key code
   // if (keyCode === 23) {
   //   if (numberOfArrows > 0) {
   //     var posX = playerArcher.body.position.x;
@@ -91,23 +92,25 @@ function keyPressed() {
 
   //     Matter.Body.setAngle(arrow.body, angle);
   //     playerArrows.push(arrow);
-  //     numberOfArrows += 1;
+  //     numberOfArrows += 1; //same as numberOfArrows=numberOfArrows+1
   //   }
   // }
+  console.log("Before checking the keycode"+playerArrows.length);
 
-   // if (keyCode === 32) {
-  //   if (numberOfArrows > 0) {
-  //     var posX = playerArcher.body.position.x;
-  //     var posY = playerArcher.body.position.y;
-  //     var angle = playerArcher.body.angle;
+    if (keyCode === 32) {
+     if (numberOfArrows > 0) {
+       var posX = playerArcher.body.position.x;
+       var posY = playerArcher.body.position.y;
+       var angle = playerArcher.body.angle;
 
-  //     var arrow = new PlayerArrow(posX, posY, 100, 10, angle);
+       var arrow = new PlayerArrow(posX, posY, 100, 10, angle);
 
-  //     Matter.Body.setAngle(arrow.body, angle);
-  //     playerArrows.push(arrow);
-  //     numberOfArrows -= 1;
-  //   }
-  // }
+       Matter.Body.setAngle(arrow.body, angle);
+       playerArrows.push(arrow);
+       console.log("Just after push and when we press key space -- array size"+playerArrows.length);
+       numberOfArrows -= 1;
+     }
+   }
 
    // if (keyCode === 32) {
   //   if (numberOfArrows > 0) {
@@ -126,6 +129,7 @@ function keyPressed() {
 
 function keyReleased() {
   if (keyCode === 32) {
+    console.log("array size before key released"+playerArrows.length);
     if (playerArrows.length) {
       var angle = playerArcher.body.angle;
       playerArrows[playerArrows.length - 1].shoot(angle);
